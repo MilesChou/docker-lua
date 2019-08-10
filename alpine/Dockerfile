@@ -29,7 +29,7 @@ RUN set -xe && \
         cd lua-${LUA_VERSION} && \
         make linux && make install && cd / && \
         rm -rf lua-${LUA_VERSION} && \
-        # Install Luarocks
+        # Install LuaRocks
         wget https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz && \
         tar zxpf luarocks-${LUAROCKS_VERSION}.tar.gz && rm -f luarocks-${LUAROCKS_VERSION}.tar.gz && \
         cd luarocks-${LUAROCKS_VERSION} && \

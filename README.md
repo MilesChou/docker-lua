@@ -5,15 +5,15 @@
 
 Docker base image for Lua, see https://hub.docker.com/r/mileschou/lua/
 
-This repository is a prototype image with [Lua](https://www.lua.org/) and [LuaRocks](https://luarocks.org/).
+This repository is a prototype image with [Lua v5.3.5](https://www.lua.org/) and [LuaRocks v2.4.4](https://luarocks.org/).
 
 ## Supported tags and respective `Dockerfile` links
 
 * [`5.3-alpine`, `5.3`, `alpine`, `latest` (alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/alpine/Dockerfile)
 
-## Install dependency using Luarocks
+## Install dependency using LuaRocks
 
-Luarocks using some general dev lib. Use the `docker-luarocks-install` can install easily.
+LuaRocks using some general dev lib. Use the `docker-luarocks-install` can install easily.
 
 ```
 docker-luarocks-install busted
