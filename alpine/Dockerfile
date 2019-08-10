@@ -25,9 +25,7 @@ RUN set -xe && \
         curl -R -O http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
         tar zxf lua-${LUA_VERSION}.tar.gz && rm -f lua-${LUA_VERSION}.tar.gz && \
         cd lua-${LUA_VERSION} && \
-        make linux && cd / && \
-        mv /lua-${LUA_VERSION}/src/lua /usr/local/bin/ && \
-        mv /lua-${LUA_VERSION}/src/luac /usr/local/bin/ && \
+        make linux && make install && cd / && \
         rm -rf lua-${LUA_VERSION} && \
         # Remove all build time deps
         apk del .build-deps && \
