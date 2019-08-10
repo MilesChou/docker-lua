@@ -8,4 +8,5 @@ IMAGE := mileschou/lua
 all: alpine
 
 alpine:
-	docker build -t=$(IMAGE):alpine -f alpine/Dockerfile .
+	docker build -t=$(IMAGE) -f alpine/Dockerfile .
+	docker build -t=$(IMAGE):luarocks -f alpine/luarocks/Dockerfile .

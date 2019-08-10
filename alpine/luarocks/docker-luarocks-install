@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Install temp deps
+apk add --no-cache --virtual .build-deps \
+    curl \
+    libc-dev \
+    gcc
+
+luarocks install $@
+
+apk del .build-deps
