@@ -1,6 +1,9 @@
 # Docker Lua
 
-Dockerized Lua
+[![](https://img.shields.io/docker/stars/mileschou/lua.svg)](https://hub.docker.com/r/mileschou/lua/)
+[![](https://img.shields.io/docker/pulls/mileschou/lua.svg)](https://hub.docker.com/r/mileschou/lua/)
+
+Docker base image for Lua, see https://hub.docker.com/r/mileschou/lua/
 
 This repository is a prototype image with [Lua](https://www.lua.org/).
 
