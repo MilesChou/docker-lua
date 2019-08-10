@@ -5,12 +5,11 @@
 
 Docker base image for Lua, see https://hub.docker.com/r/mileschou/lua/
 
-This repository is a prototype image with [Lua](https://www.lua.org/).
+This repository is a prototype image with [Lua](https://www.lua.org/) and [LuaRocks](https://luarocks.org/).
 
 ## Supported tags and respective `Dockerfile` links
 
 * [`5.3-alpine`, `5.3`, `alpine`, `latest` (alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/alpine/Dockerfile)
-* [`5.3-alpine-luarocks`, `5.3-luarocks`, `alpine-luarocks`, `luarocks` (alpine/luarocks/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/alpine/luarocks/Dockerfile)
 
 ## Install dependency using Luarocks
 

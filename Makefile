@@ -9,4 +9,3 @@ all: alpine
 
 alpine:
 	docker build -t=$(IMAGE) -f alpine/Dockerfile .
-	docker build -t=$(IMAGE):luarocks -f alpine/luarocks/Dockerfile .

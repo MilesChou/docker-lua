@@ -3,7 +3,9 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ARG LUA_VERSION=5.3.5
-ENV LUA_VERSION=${LUA_VERSION}
+ARG LUAROCKS_VERSION=2.4.4
+ENV LUA_VERSION=${LUA_VERSION} \
+    LUAROCKS_VERSION=${LUAROCKS_VERSION}
 
 # Set Build Deps
 ENV BUILD_DEPS \
@@ -27,7 +29,16 @@ RUN set -xe && \
         cd lua-${LUA_VERSION} && \
         make linux && make install && cd / && \
         rm -rf lua-${LUA_VERSION} && \
+        # Install Luarocks
+        wget https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz && \
+        tar zxpf luarocks-${LUAROCKS_VERSION}.tar.gz && rm -f luarocks-${LUAROCKS_VERSION}.tar.gz && \
+        cd luarocks-${LUAROCKS_VERSION} && \
+        ./configure && \
+        make build && make install && \
+        cd .. && rm -rf luarocks-${LUAROCKS_VERSION} && \
         # Remove all build time deps
         apk del .build-deps && \
         # Test
-        lua -v
+        lua -v && luarocks
+
+COPY docker-* /usr/local/bin
