@@ -9,7 +9,8 @@ This repository is a prototype image with [Lua v5.3.5](https://www.lua.org/) and
 
 ## Supported tags and respective `Dockerfile` links
 
-* [`5.3-alpine`, `5.3`, `alpine`, `latest` (alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/alpine/Dockerfile)
+* [`5.3-debian`, `5.3`, `debian`, `latest` (debian/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/debian/Dockerfile)
+* [`5.3-alpine`, `alpine` (alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/alpine/Dockerfile)
 
 ## Install dependency using LuaRocks
 

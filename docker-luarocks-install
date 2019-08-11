@@ -1,11 +1,40 @@
 #!/bin/sh
 
-# Install temp deps
-apk add --no-cache --virtual .build-deps \
-    curl \
-    libc-dev \
-    gcc
+set -e
+
+pm='unknown'
+if [ -e /lib/apk/db/installed ]; then
+    pm='apk'
+fi
+
+if [ "$pm" = 'apk' ]; then
+    # Install temp deps
+    apk add --no-cache --virtual .build-deps \
+        curl \
+        libc-dev \
+        gcc
+else
+    apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests \
+        gcc \
+        libc-dev \
+        libreadline-dev \
+        make \
+        unzip \
+        wget
+fi
 
 luarocks install $@
 
-apk del .build-deps
+if [ "$pm" = 'apk' ]; then
+    apk del .build-deps
+else
+    apt-get remove --purge -y \
+        gcc \
+        libc-dev \
+        libreadline-dev \
+        make \
+        unzip \
+        wget
+    apt-get autoremove --purge -y
+    rm -r /var/lib/apt/lists/*
+fi
