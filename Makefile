@@ -1,14 +1,20 @@
 #!/usr/bin/make -f
 
 IMAGE := mileschou/lua
-.PHONY: alpine debian
+.PHONY: 5.1 5.2 5.3
 
 # ------------------------------------------------------------------------------
 
-all: alpine debian
+all: 5.1 5.2 5.3
 
-alpine:
-	docker build -t=$(IMAGE) -f alpine/Dockerfile .
+5.1:
+	docker build -t=$(IMAGE) -f 5.1/Dockerfile .
+	docker build -t=$(IMAGE) -f 5.1/alpine/Dockerfile .
 
-debian:
-	docker build -t=$(IMAGE) -f debian/Dockerfile .
+5.2:
+	docker build -t=$(IMAGE) -f 5.2/Dockerfile .
+	docker build -t=$(IMAGE) -f 5.2/alpine/Dockerfile .
+
+5.3:
+	docker build -t=$(IMAGE) -f 5.3/Dockerfile .
+	docker build -t=$(IMAGE) -f 5.3/alpine/Dockerfile .
