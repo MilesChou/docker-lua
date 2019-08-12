@@ -9,33 +9,17 @@ gcc
 wget
 "
 
-buildDepsApt="
-curl
-gcc
-libc-dev
-make
-unzip
-wget
-"
-
 pm='unknown'
 if [ -e /lib/apk/db/installed ]; then
     pm='apk'
 fi
 
 if [ "$pm" = 'apk' ]; then
-    # Install temp deps
     apk add --no-cache ${buildDepsApk}
-else
-    apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests ${buildDepsApt}
 fi
 
 luarocks install $@
 
 if [ "$pm" = 'apk' ]; then
     apk del ${buildDepsApk}
-else
-    apt-get remove --purge -y ${buildDepsApt}
-    apt-get autoremove --purge -y
-    rm -r /var/lib/apt/lists/*
 fi
