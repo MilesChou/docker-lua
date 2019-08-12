@@ -6,9 +6,11 @@ buildDepsApk="
 curl
 libc-dev
 gcc
+wget
 "
 
 buildDepsApt="
+curl
 gcc
 libc
 libreadline
