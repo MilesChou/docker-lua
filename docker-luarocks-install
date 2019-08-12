@@ -2,6 +2,21 @@
 
 set -e
 
+buildDepsApk="
+curl
+libc-dev
+gcc
+"
+
+buildDepsApt="
+gcc
+libc
+libreadline
+make
+unzip
+wget
+"
+
 pm='unknown'
 if [ -e /lib/apk/db/installed ]; then
     pm='apk'
@@ -9,32 +24,17 @@ fi
 
 if [ "$pm" = 'apk' ]; then
     # Install temp deps
-    apk add --no-cache --virtual .build-deps \
-        curl \
-        libc-dev \
-        gcc
+    apk add --no-cache ${buildDepsApk}
 else
-    apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests \
-        gcc \
-        libc-dev \
-        libreadline-dev \
-        make \
-        unzip \
-        wget
+    apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests ${buildDepsApt}
 fi
 
 luarocks install $@
 
 if [ "$pm" = 'apk' ]; then
-    apk del .build-deps
+    apk del ${buildDepsApk}
 else
-    apt-get remove --purge -y \
-        gcc \
-        libc-dev \
-        libreadline-dev \
-        make \
-        unzip \
-        wget
+    apt-get remove --purge -y ${buildDepsApt}
     apt-get autoremove --purge -y
     rm -r /var/lib/apt/lists/*
 fi
