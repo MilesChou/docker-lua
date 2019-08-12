@@ -12,8 +12,7 @@ wget
 buildDepsApt="
 curl
 gcc
-libc
-libreadline
+libc-dev
 make
 unzip
 wget
