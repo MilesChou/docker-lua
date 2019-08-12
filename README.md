@@ -18,7 +18,7 @@ This repository is a prototype image with [Lua](https://www.lua.org/) and [LuaRo
 
 ## Install dependency using LuaRocks
 
-LuaRocks using some general dev lib. Use the `docker-luarocks-install` can install easily.
+LuaRocks will use some general development library. Use the `docker-luarocks-install` script can install easily.
 
 ```
 docker-luarocks-install busted
