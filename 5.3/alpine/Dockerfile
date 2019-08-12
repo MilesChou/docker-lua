@@ -10,22 +10,18 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 ENV LUA_VERSION=5.3.5 \
     LUAROCKS_VERSION=2.4.4
 
-# Set Build Deps
-ENV BUILD_DEPS \
-        curl \
-        gcc \
-        libc-dev \
-        make \
-        readline-dev
-
-# Set Persistent Deps
-ENV PERSISTENT_DEPS \
-        readline
-
-# Install depandency packages
+# Install dependency packages
 RUN set -xe && \
-        apk add --no-cache --virtual .build-deps ${BUILD_DEPS} && \
-        apk add --no-cache --virtual .persistent-deps ${PERSISTENT_DEPS} && \
+        apk add --no-cache --virtual .build-deps \
+            curl \
+            gcc \
+            libc-dev \
+            make \
+            readline-dev \
+        && \
+        apk add --no-cache --virtual .persistent-deps \
+            readline \
+        && \
         # Install Lua
         wget http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
         tar zxf lua-${LUA_VERSION}.tar.gz && rm -f lua-${LUA_VERSION}.tar.gz && \
@@ -39,7 +35,7 @@ RUN set -xe && \
         ./configure && \
         make -j $(getconf _NPROCESSORS_ONLN) build && make install && \
         cd .. && rm -rf luarocks-${LUAROCKS_VERSION} && \
-        # Remove all build time deps
+        # Remove all build deps
         apk del .build-deps && \
         # Test
         lua -v && luarocks

@@ -10,7 +10,7 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 ENV LUA_VERSION=5.2.4 \
     LUAROCKS_VERSION=2.4.4
 
-# Set Build Deps
+# Set build deps
 ENV BUILD_DEPS \
         gcc \
         libc-dev \
@@ -19,15 +19,15 @@ ENV BUILD_DEPS \
         unzip \
         wget
 
-# Set Persistent Deps
-ENV PERSISTENT_DEPS \
-        ca-certificates \
-        libncurses6 \
-        libreadline7
-
-# Install depandency packages
+# Install dependency packages
 RUN set -xe && \
-        apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests ${BUILD_DEPS} ${PERSISTENT_DEPS} && \
+        apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests \
+            ${BUILD_DEPS} \
+            # Persistent Deps
+            ca-certificates \
+            libncurses6 \
+            libreadline7 \
+        && \
         # Install Lua
         wget http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
         tar zxf lua-${LUA_VERSION}.tar.gz && rm -f lua-${LUA_VERSION}.tar.gz && \
@@ -41,7 +41,7 @@ RUN set -xe && \
         ./configure && \
         make -j $(getconf _NPROCESSORS_ONLN) build && make install && \
         cd .. && rm -rf luarocks-${LUAROCKS_VERSION} && \
-        # Remove all build time deps
+        # Remove all build deps
         apt-get remove --purge -y ${BUILD_DEPS} && apt-get autoremove --purge -y && rm -r /var/lib/apt/lists/* && \
         # Test
         lua -v && luarocks
