@@ -8,7 +8,7 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ENV LUA_VERSION=5.2.4 \
-    LUAROCKS_VERSION=2.4.4
+    LUAROCKS_VERSION=3.3.1
 
 # Install dependency packages
 RUN set -xe && \

@@ -5,7 +5,7 @@
 
 Docker base image for Lua, see https://hub.docker.com/r/mileschou/lua/
 
-This repository is a prototype image with [Lua](https://www.lua.org/) / [LuaJIT](https://luajit.org/) and [LuaRocks v2.4.4](https://luarocks.org/).
+This repository is a prototype image with [Lua](https://www.lua.org/) / [LuaJIT](https://luajit.org/) and [LuaRocks v3.3.1](https://luarocks.org/).
 
 ## Supported tags and respective `Dockerfile` links
 

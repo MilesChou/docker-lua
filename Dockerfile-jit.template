@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ENV LUAJIT_VERSION=%%LUAJIT_VERSION%% \
-    LUAROCKS_VERSION=2.4.4
+    LUAROCKS_VERSION=3.3.1
 
 # Set build deps
 ENV BUILD_DEPS \
@@ -25,20 +25,19 @@ RUN set -xe && \
         cd LuaJIT-${LUAJIT_VERSION} && \
         make -j $(getconf _NPROCESSORS_ONLN) && make install && \
         cd / && rm -rf LuaJIT-${LUAJIT_VERSION} && \
+        # Create link
+        [ -e /usr/local/bin/luajit ] || ln -sf luajit-${LUAJIT_VERSION} /usr/local/bin/luajit && \
         # Install LuaRocks
         wget https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz && \
         tar zxf luarocks-${LUAROCKS_VERSION}.tar.gz && rm -f luarocks-${LUAROCKS_VERSION}.tar.gz && \
         cd luarocks-${LUAROCKS_VERSION} && \
         ./configure \
-            --lua-suffix=jit-${LUAJIT_VERSION} \
             --with-lua-include=/usr/local/include/luajit-$(echo $LUAJIT_VERSION | cut -d. -f1).$(echo $LUAJIT_VERSION | cut -d. -f2) \
         && \
         make -j $(getconf _NPROCESSORS_ONLN) build && make install && \
         cd / && rm -rf luarocks-${LUAROCKS_VERSION} && \
         # Remove all build deps
         apt-get remove --purge -y ${BUILD_DEPS} && apt-get autoremove --purge -y && rm -r /var/lib/apt/lists/* && \
-        # Create link
-        [ -e /usr/local/bin/luajit ] || ln -sf luajit-${LUAJIT_VERSION} /usr/local/bin/luajit && \
         # Test
         luajit -v && luarocks
 

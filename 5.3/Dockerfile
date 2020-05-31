@@ -3,12 +3,12 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ENV LUA_VERSION=5.3.5 \
-    LUAROCKS_VERSION=2.4.4
+    LUAROCKS_VERSION=3.3.1
 
 # Set build deps
 ENV BUILD_DEPS \
