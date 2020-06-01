@@ -3,7 +3,7 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM alpine:3.10
+FROM alpine:3.12
 LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
