@@ -4,7 +4,10 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 FROM alpine:3.12
-LABEL maintainer="MilesChou <github.com/MilesChou>"
+
+LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" \
+    repository="https://github.com/MilesChou/docker-lua" \
+    maintainer="MilesChou <jangconan@gmail.com>"
 
 # Set environment
 ENV LUA_VERSION=5.4.1 \

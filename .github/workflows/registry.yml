@@ -1,0 +1,64 @@
+name: Publish Docker
+
+on: [push]
+
+jobs:
+  latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build latest version and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua
+          tags: "latest,5.4"
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: 5.4/Dockerfile
+
+  latestAlpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build latest version and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua
+          tags: "alpine,5.4-alpine"
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: 5.4/alpine/Dockerfile
+
+  buildLua:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["5.3", "5.2", "5.1"]
+    steps:
+      - uses: actions/checkout@master
+      - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua:${{ matrix.version }}
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: ${{ matrix.version }}/Dockerfile
+
+  buildLuaAlpine:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["5.3", "5.2", "5.1"]
+    steps:
+      - uses: actions/checkout@master
+      - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua:${{ matrix.version }}-alpine
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: ${{ matrix.version }}/alpine/Dockerfile
