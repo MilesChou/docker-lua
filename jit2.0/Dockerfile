@@ -8,7 +8,7 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ENV LUAJIT_VERSION=2.0.5 \
-    LUAROCKS_VERSION=3.3.1
+    LUAROCKS_VERSION=3.4.0
 
 # Set build deps
 ENV BUILD_DEPS \

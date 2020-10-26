@@ -7,7 +7,7 @@ FROM alpine:3.12
 LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
-ENV LUA_VERSION=5.2.4 \
+ENV LUA_VERSION=5.4.1 \
     LUAROCKS_VERSION=3.4.0
 
 # Install dependency packages

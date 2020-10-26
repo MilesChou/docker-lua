@@ -8,13 +8,14 @@ LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
 ENV LUA_VERSION=5.3.5 \
-    LUAROCKS_VERSION=3.3.1
+    LUAROCKS_VERSION=3.4.0
 
 # Install dependency packages
 RUN set -xe && \
         apk add --no-cache --virtual .build-deps \
             curl \
             gcc \
+            g++ \
             libc-dev \
             make \
             readline-dev \

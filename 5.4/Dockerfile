@@ -3,25 +3,30 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM alpine:3.12
+FROM debian:buster-slim
 LABEL maintainer="MilesChou <github.com/MilesChou>"
 
 # Set environment
-ENV LUA_VERSION=5.2.4 \
+ENV LUA_VERSION=5.4.1 \
     LUAROCKS_VERSION=3.4.0
+
+# Set build deps
+ENV BUILD_DEPS \
+        gcc \
+        libc-dev \
+        libreadline-dev \
+        make \
+        unzip \
+        wget
 
 # Install dependency packages
 RUN set -xe && \
-        apk add --no-cache --virtual .build-deps \
-            curl \
-            gcc \
-            g++ \
-            libc-dev \
-            make \
-            readline-dev \
-        && \
-        apk add --no-cache \
-            readline \
+        apt-get update -y && apt-get install -y --no-install-recommends --no-install-suggests \
+            ${BUILD_DEPS} \
+            # Persistent Deps
+            ca-certificates \
+            libncurses6 \
+            libreadline7 \
         && \
         # Install Lua
         wget http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
@@ -37,7 +42,7 @@ RUN set -xe && \
         make -j $(getconf _NPROCESSORS_ONLN) build && make install && \
         cd / && rm -rf luarocks-${LUAROCKS_VERSION} && \
         # Remove all build deps
-        apk del .build-deps && \
+        apt-get remove --purge -y ${BUILD_DEPS} && apt-get autoremove --purge -y && rm -r /var/lib/apt/lists/* && \
         # Test
         lua -v && luarocks
 

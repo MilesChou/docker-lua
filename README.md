@@ -9,6 +9,8 @@ This repository is a prototype image with [Lua](https://www.lua.org/) / [LuaJIT]
 
 ## Supported tags and respective `Dockerfile` links
 
+* [`5.4`, `latest` (5.4/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/5.4/Dockerfile)
+* [`5.4-alpine`, `alpine` (5.4/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/5.4/alpine/Dockerfile)
 * [`5.3`, `latest` (5.3/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/5.3/Dockerfile)
 * [`5.3-alpine`, `alpine` (5.3/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/5.3/alpine/Dockerfile)
 * [`5.2` (5.2/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/5.2/Dockerfile)

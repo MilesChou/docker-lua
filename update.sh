@@ -14,6 +14,7 @@ VERSIONS="
 5.1.5
 5.2.4
 5.3.5
+5.4.1
 "
 
 for version in ${VERSIONS}; do
