@@ -47,7 +47,7 @@ for version in ${JIT_VERSIONS}; do
     major_version=$(echo ${version} | cut -d. -f1)
     minor_version=$(echo ${version} | cut -d. -f2)
 
-    main_version=jit"${major_version}.${minor_version}"
+    main_version=jit-"${major_version}.${minor_version}"
 
     rm -rf ${main_version}
     mkdir -p ${main_version}

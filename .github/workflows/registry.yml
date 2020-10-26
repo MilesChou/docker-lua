@@ -17,7 +17,7 @@ jobs:
           registry: ghcr.io
           dockerfile: 5.4/Dockerfile
 
-  latestAlpine:
+  alpine:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -31,11 +31,39 @@ jobs:
           registry: ghcr.io
           dockerfile: 5.4/alpine/Dockerfile
 
-  buildLua:
+  jit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build latest version and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua
+          tags: "jit,jit-2.0"
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: jit-2.0/Dockerfile
+
+  jit-alpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build latest version and publish to GitHub Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.22
+        with:
+          name: mileschou/lua
+          tags: "jit-alpine,jit-2.0-alpine"
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+          registry: ghcr.io
+          dockerfile: jit-2.0/alpine/Dockerfile
+
+  buildGeneral:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["5.3", "5.2", "5.1"]
+        version: ["5.3", "5.2", "5.1", "jit-2.1"]
     steps:
       - uses: actions/checkout@master
       - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry
@@ -47,11 +75,11 @@ jobs:
           registry: ghcr.io
           dockerfile: ${{ matrix.version }}/Dockerfile
 
-  buildLuaAlpine:
+  buildAlpine:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["5.3", "5.2", "5.1"]
+        version: ["5.3", "5.2", "5.1", "jit-2.1"]
     steps:
       - uses: actions/checkout@master
       - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry

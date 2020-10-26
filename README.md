@@ -3,7 +3,7 @@
 [![](https://img.shields.io/docker/stars/mileschou/lua.svg)](https://hub.docker.com/r/mileschou/lua/)
 [![](https://img.shields.io/docker/pulls/mileschou/lua.svg)](https://hub.docker.com/r/mileschou/lua/)
 
-Docker base image for Lua, see https://hub.docker.com/r/mileschou/lua/
+Docker base image for Lua. See [DockerHub Registry](https://hub.docker.com/r/mileschou/lua/) or [GitHub Container Registry](https://github.com/users/MilesChou/packages/container/package/lua) for pulling images.
 
 This repository is a prototype image with [Lua](https://www.lua.org/) / [LuaJIT](https://luajit.org/) and [LuaRocks v3.3.1](https://luarocks.org/).
 
@@ -20,11 +20,10 @@ This repository is a prototype image with [Lua](https://www.lua.org/) / [LuaJIT]
 
 LuaJIT tags in here:
 
-* [`jit-2.1` (jit2.1/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit2.1/Dockerfile)
-* [`jit-2.1-alpine` (jit2.1/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit2.1/alpine/Dockerfile)
-* [`jit-2.0`, `jit` (jit2.0/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit2.0/Dockerfile)
-* [`jit-2.0-alpine` `jit-alpine` (jit2.0/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit2.0/alpine/Dockerfile)
-
+* [`jit-2.1` (jit-2.1/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit-2.1/Dockerfile)
+* [`jit-2.1-alpine` (jit-2.1/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit-2.1/alpine/Dockerfile)
+* [`jit-2.0`, `jit` (jit-2.0/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit-2.0/Dockerfile)
+* [`jit-2.0-alpine` `jit-alpine` (jit-2.0/alpine/Dockerfile)](https://github.com/MilesChou/docker-lua/blob/master/jit-2.0/alpine/Dockerfile)
 
 ## Install dependency using LuaRocks
 
