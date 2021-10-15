@@ -1,6 +1,11 @@
 name: Publish Docker
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '30 2 * * 3' # Weekly on Wednesday at 02:30
 
 jobs:
   latest:
@@ -12,8 +17,8 @@ jobs:
         with:
           name: mileschou/lua
           tags: "latest,5.4"
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: 5.4/Dockerfile
 
@@ -26,8 +31,8 @@ jobs:
         with:
           name: mileschou/lua
           tags: "alpine,5.4-alpine"
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: 5.4/alpine/Dockerfile
 
@@ -40,8 +45,8 @@ jobs:
         with:
           name: mileschou/lua
           tags: "jit,jit-2.0"
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: jit-2.0/Dockerfile
 
@@ -54,8 +59,8 @@ jobs:
         with:
           name: mileschou/lua
           tags: "jit-alpine,jit-2.0-alpine"
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: jit-2.0/alpine/Dockerfile
 
@@ -70,8 +75,8 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@2.22
         with:
           name: mileschou/lua:${{ matrix.version }}
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: ${{ matrix.version }}/Dockerfile
 
@@ -86,7 +91,7 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@2.22
         with:
           name: mileschou/lua:${{ matrix.version }}-alpine
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: mileschou
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: ${{ matrix.version }}/alpine/Dockerfile
