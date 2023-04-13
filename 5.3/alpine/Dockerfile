@@ -3,15 +3,15 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM alpine:3.12
+FROM alpine:3.16
 
 LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" \
     repository="https://github.com/MilesChou/docker-lua" \
     maintainer="MilesChou <jangconan@gmail.com>"
 
 # Set environment
-ENV LUA_VERSION=5.3.5 \
-    LUAROCKS_VERSION=3.4.0
+ENV LUA_VERSION=5.3.6 \
+    LUAROCKS_VERSION=3.9.2
 
 # Install dependency packages
 RUN set -xe && \

@@ -13,8 +13,8 @@ generated_warning() {
 VERSIONS="
 5.1.5
 5.2.4
-5.3.5
-5.4.1
+5.3.6
+5.4.4
 "
 
 for version in ${VERSIONS}; do

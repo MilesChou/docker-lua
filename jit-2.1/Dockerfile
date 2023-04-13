@@ -3,7 +3,7 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" \
     repository="https://github.com/MilesChou/docker-lua" \
@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" 
 
 # Set environment
 ENV LUAJIT_VERSION=2.1.0-beta3 \
-    LUAROCKS_VERSION=3.4.0
+    LUAROCKS_VERSION=3.9.2
 
 # Set build deps
 ENV BUILD_DEPS \

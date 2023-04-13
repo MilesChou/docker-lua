@@ -3,7 +3,7 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" \
     repository="https://github.com/MilesChou/docker-lua" \
@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.source="https://github.com/MilesChou/docker-lua" 
 
 # Set environment
 ENV LUA_VERSION=5.1.5 \
-    LUAROCKS_VERSION=3.4.0
+    LUAROCKS_VERSION=3.9.2
 
 # Set build deps
 ENV BUILD_DEPS \
@@ -28,8 +28,8 @@ RUN set -xe && \
             ${BUILD_DEPS} \
             # Persistent Deps
             ca-certificates \
+            libreadline8 \
             libncurses6 \
-            libreadline7 \
         && \
         # Install Lua
         wget http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \

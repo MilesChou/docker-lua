@@ -11,9 +11,9 @@ jobs:
   latest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build latest version and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua
           tags: "latest,5.4"
@@ -25,9 +25,9 @@ jobs:
   alpine:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build latest version and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua
           tags: "alpine,5.4-alpine"
@@ -39,9 +39,9 @@ jobs:
   jit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build latest version and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua
           tags: "jit,jit-2.0"
@@ -53,9 +53,9 @@ jobs:
   jit-alpine:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build latest version and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua
           tags: "jit-alpine,jit-2.0-alpine"
@@ -70,9 +70,9 @@ jobs:
       matrix:
         version: ["5.3", "5.2", "5.1", "jit-2.1"]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua:${{ matrix.version }}
           username: mileschou
@@ -86,9 +86,9 @@ jobs:
       matrix:
         version: ["5.3", "5.2", "5.1", "jit-2.1"]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build Lua ${{ matrix.version }} and publish to GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.22
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mileschou/lua:${{ matrix.version }}-alpine
           username: mileschou
